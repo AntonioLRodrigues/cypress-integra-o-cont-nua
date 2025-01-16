@@ -1,10 +1,18 @@
 name: End-to-end tests
-on: push
+on:
+  push:
+    branches:
+      - main # Certifique-se de que você está fazendo commits na branch 'main'
+
 jobs:
   cypress-run:
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: npm install # Garante que as dependências do Cypress sejam instaladas
+
       - name: Cypress run
         uses: cypress-io/github-action@v6
